@@ -566,6 +566,23 @@ TextPane.prototype = extend(Object.create(Pane.prototype), {
   },
 });
 
+function HTMLPane(id) {
+  Pane.call(this, id);
+
+  var self = this;
+  var content = this.content;
+  var html = document.createElement('div');
+  html.className = 'content-html';
+  content.appendChild(html);
+  this.content = html;
+}
+
+HTMLPane.prototype = extend(Object.create(Pane.prototype), {
+  setContent: function(html) {
+    this.content.innerHTML = atob(html);
+  },
+});
+
 function AudioPane(id) {
   Pane.call(this, id);
 
@@ -604,6 +621,11 @@ var Commands = {
     var pane = getPane(cmd.id, TextPane);
     if (cmd.title) pane.setTitle(cmd.title);
     pane.setContent(cmd.text);
+  },
+  html: function(cmd) {
+    var pane = getPane(cmd.id, HTMLPane);
+    if (cmd.title) pane.setTitle(cmd.title);
+    pane.setContent(cmd.html);
   },
   audio: function(cmd) {
     var pane = getPane(cmd.id, AudioPane);

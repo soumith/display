@@ -56,7 +56,11 @@ Common parameters:
   - `file`: see [Dygraph data formats](http://dygraphs.com/data.html) for supported formats
   - `labels`: list of strings, first element is the X label
 
-`text` sends raw HTML
+`text` sends raw text into a <p> paragraph pane
+
+`html` sends raw HTML
+
+`audio` sends audio. Audio can either be a filename (string) or a torch.*Tensor
 
 ## Technical overview
 

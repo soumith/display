@@ -236,5 +236,14 @@ function M.audio(data, opts)
   return win
 end
 
+function M.html(html, opts)
+  opts = opts or {}
+  local win = opts.win or uid()
+
+  send({ command='html', id=win, title=opts.title, html=mime.b64(html) })
+  return win
+end
+
+
 
 return M
